@@ -15,10 +15,10 @@
         </div>
         <div class="login-options">
             
-            <form id="emailLoginForm">
-                <input type="email" placeholder="E-mail" required>
-                <input type="password" placeholder="Senha" required>
-                <button class="login-btn google-btn">Entrar</button>
+            <form id="emailLoginForm" action="processarLogin.php" method="POST">
+                <input type="email" name="EMAIL" placeholder="E-mail" required>
+                <input type="password" name="SENHA" placeholder="Senha" required>
+                <button type="submit" button class="login-btn google-btn">Entrar</button>
                 <br><br>
                 <button type="submit" class="login-btn" href="CriarCadastro.html">Criar Conta</button>
             </form>
