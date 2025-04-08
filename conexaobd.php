@@ -3,10 +3,10 @@
 // métodos de conexão de BD mysqli, mysql e pdo.
 
 // conexão com dreamweaver
-$hostname_conn_bd_sim = "localhost";
-$database_conn_bd_sim = "bd_toicos;
-$username_conn_bd_sim = "root";
-$password_conn_bd_sim = "";
+$hostname_conn_bd_sim = "ASUSRAFAEL";
+$database_conn_bd_sim = "bd_toicos";
+$username_conn_bd_sim = "HAMBURGUER";
+$password_conn_bd_sim = "hamburguer";
 
 //criando a conexão usando as variáveis
 
