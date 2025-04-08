@@ -1,6 +1,6 @@
 <?php
 // Conexão com o banco de dados
-$conn = new mysqli("localhost", "usuario", "senha", "bd_toicos");
+$conn = new mysqli("ASUSRAFAEL", "HAMBURGUER", "hamburguer", "bd_toicos");
 
 // Verifica a conexão
 if ($conn->connect_error) {
