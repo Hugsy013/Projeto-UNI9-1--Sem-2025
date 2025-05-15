@@ -1,6 +1,10 @@
 <?php
+
+// Inicia a sessão
+session_start();
+
 // Conexão com o banco de dados
-$conn = new mysqli("ASUSRAFAEL", "HAMBURGUER", "hamburguer", "bd_toicos");
+$conn = new mysqli("localhost", "root", "", "bd_toicos");
 
 // Verifica a conexão
 if ($conn->connect_error) {
@@ -29,7 +33,7 @@ if ($result->num_rows > 0) {
         $_SESSION['TIPO'] = $usuario['TIPO'];
         echo "Login realizado com sucesso!";
         // Redireciona para a página inicial ou painel
-        header("Location: painel.php");
+        header("Location: http://192.168.0.65:8080/projeto/cardapio.html");
         exit();
     } else {
         // Senha incorreta
