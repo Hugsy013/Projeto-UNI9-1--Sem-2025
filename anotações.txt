@@ -1,0 +1,28 @@
+--Observações para script login na qual vamos ver se fazemos ou não.
+
+--Criptografia de Senhas:
+
+    Certifique-se de que as senhas no banco de dados estão armazenadas usando password_hash() para maior segurança.
+    Exemplo ao cadastrar um usuário:
+
+---------------------------------------------------------------------------------------------------------------------------------
+<?php
+$senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+---------------------------------------------------------------------------------------------------------------------------------
+
+--Página de Redirecionamento:
+
+    Crie a página painel.php para onde o usuário será redirecionado após o login.
+
+--Logout:
+
+    Para implementar o logout, basta destruir a sessão:
+
+---------------------------------------------------------------------------------------------------------------------------------
+    <?php
+session_start();
+session_destroy();
+header("Location: login.html");
+exit();
+---------------------------------------------------------------------------------------------------------------------------------
+
