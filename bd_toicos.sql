@@ -36,6 +36,7 @@ CREATE TABLE `cliente` (
   `ENDERECO_CLI` varchar(255) NOT NULL
   `NUMERO_CELULAR` varchar(15) NOT NULL,
   `COMPLEMENTO` varchar(255),
+  `SENHA` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
