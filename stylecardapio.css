@@ -4,6 +4,13 @@ body {
     margin: 0, auto;
     padding: 20px;
 }
+
+.Cardapio-container{
+
+  color: white
+}
+
+
 body {
   background-image: url('mouth.png'); /* Substitua pelo caminho correto da imagem */
   background-size: cover; /* Faz a imagem cobrir toda a tela */

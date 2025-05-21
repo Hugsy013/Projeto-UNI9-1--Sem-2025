@@ -9,8 +9,11 @@
 </head>
 <body>
     <header>
+        <div class="Cardapio-container">
+            <div class="header">
         <h1>Cardápio</h1>
         <a href="carrinho.html" class="carrinho">Meus Pedidos</a>
+    </div>   
     </header>
     <div class="menu">
         <div class="card">
@@ -132,6 +135,22 @@ const menuOpcoes = document.querySelector('.menu-opcoes');
 menuBarrinha.addEventListener('click', () => {
   menuOpcoes.style.display = menuOpcoes.style.display === 'block' ? 'none' : 'block';
 });
+
+         function adicionarAoCarrinho(nome, descricao, preco) {
+            const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            carrinho.push({ nome, descricao, preco });
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+            alert(`${nome} foi adicionado aos pedidos!`);
+          }
+          document.querySelectorAll('.adicionar-pedido').forEach((botao, index) => {
+            botao.addEventListener('click', () => {
+              const card = botao.closest('.card');
+              const nome = card.querySelector('h3').textContent;
+              const descricao = card.querySelector('.lanche').textContent;
+              const preco = card.querySelector('.price').textContent;
+              adicionarAoCarrinho(nome, descricao, preco);
+            });
+          });
         </script>
 </body>
 </html>
