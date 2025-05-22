@@ -19,20 +19,17 @@ $senha = $_POST['SENHA'];
 $email = $conn->real_escape_string($email);
 $senha = $conn->real_escape_string($senha);
 
-// Consulta para verificar o usuário
-$sql = "SELECT * FROM usuarios WHERE EMAIL = '$email'";
+// Consulta para verificar se o e-mail existe
+$sql = "SELECT SENHA, IDUSUARIO FROM cliente WHERE EMAIL = '$email'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // Verifica se a senha está correta
+    // E-mail encontrado, busca a senha
     $usuario = $result->fetch_assoc();
-    if (password_verify($senha, $usuario['SENHA'])) {
+    if ($senha === $usuario['SENHA']) {
         // Login bem-sucedido
-        $_SESSION['ID_USUARIO'] = $usuario['ID_USUARIO'];
-        $_SESSION['NOME_USU'] = $usuario['NOME_USU'];
-        $_SESSION['TIPO'] = $usuario['TIPO'];
+        $_SESSION['IDUSUARIO'] = $usuario['IDUSUARIO'];
         echo "Login realizado com sucesso!";
-        // Redireciona para a página inicial ou painel
         header("Location: http://192.168.0.65:8080/projeto/cardapio.html");
         exit();
     } else {
