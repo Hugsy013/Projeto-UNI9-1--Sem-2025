@@ -9,22 +9,39 @@
   <div class="container">
     <h1>Painel de Pedidos</h1>
 
-    <div class="pedido">
-      <strong>João</strong>
-      <p>2 X-Burguer com Coca</p>
-      <div class="acoes">
-        <button>Finalizar</button>
-        <button>Ver Mais</button>
-      </div>
-    </div>
+    <div id="pedidos"></div> <!-- A lista de pedidos será inserida aqui -->
 
-    <div class="pedido">
-        <button>Finalizar</button>
-        <button>Ver Mais</button>
-      </div>
-    </div>
+    <script>
+      const pedidosDiv = document.getElementById('pedidos');
+      const pedidoFinal = localStorage.getItem('pedidoFinal');
 
-    <!-- Os pedidos reais serão carregados dinamicamente pelo back-end -->
+      if (pedidoFinal) {
+        const pedido = pedidoFinal.split('\n');
+        
+        const pedidoDiv = document.createElement('div');
+        pedidoDiv.classList.add('pedido');
+        pedidoDiv.innerHTML = `
+          <h3>Pedido:</h3>
+          <pre>${pedido.join('<br>')}</pre>
+          <div class="acoes">
+            <button onclick="finalizarPedido()">Finalizar</button>
+            <button onclick="verMais()">Ver Mais</button>
+          </div>
+        `;
+        pedidosDiv.appendChild(pedidoDiv);
+      } else {
+        pedidosDiv.innerHTML = '<p>Nenhum pedido encontrado.</p>';
+      }
+
+      function finalizarPedido() {
+        alert('Pedido finalizado!');
+        localStorage.removeItem('pedidoFinal');
+      }
+
+      function verMais() {
+        alert('Ver mais detalhes do pedido...');
+      }
+    </script>
   </div>
 </body>
 </html>

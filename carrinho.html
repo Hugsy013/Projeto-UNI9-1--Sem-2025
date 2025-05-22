@@ -5,7 +5,6 @@
   <title>Meus Pedidos | TOIÇO'S BURGUERS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="stylecarrinho.css">
-  </style>
 </head>
 <body>
   <h1>Meus Pedidos</h1>
@@ -76,7 +75,10 @@
       }
 
       localStorage.setItem('pedidoFinal', resumo);
-      window.location.href = 'Loja.html';
+
+      console.log('Pedido finalizado:', resumo);
+      
+      window.location.href = 'painel.html';
     }
   </script>
 </body>
