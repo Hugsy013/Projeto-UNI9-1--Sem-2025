@@ -82,6 +82,25 @@
     .observacoes button:hover {
       background-color: #444;
     }
+
+    .finalizar {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .finalizar button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      background-color: green;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .finalizar button:hover {
+      background-color: darkgreen;
+    }
   </style>
 </head>
 <body>
@@ -93,6 +112,10 @@
     <label for="obs">Observações do cliente:</label>
     <textarea id="obs" placeholder="Ex: Tirar cebola, ponto da carne, forma de entrega..."></textarea>
     <button onclick="salvarObservacoes()">Salvar Observação</button>
+  </div>
+
+  <div class="finalizar">
+    <button onclick="finalizarPedido()">Finalizar Pedido</button>
   </div>
 
   <script>
@@ -132,6 +155,24 @@
       } else {
         alert('Você não escreveu nada!');
       }
+    }
+
+    function finalizarPedido() {
+      const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const observacoes = localStorage.getItem('observacoes') || '';
+      
+      if (carrinho.length === 0) {
+        alert('Seu carrinho está vazio!');
+        return;
+      }
+
+      let resumo = carrinho.map(item => `${item.nome} - ${item.descricao} - ${item.preco}`).join('\n');
+      if (observacoes) {
+        resumo += `\n\nObservações: ${observacoes}`;
+      }
+
+      localStorage.setItem('pedidoFinal', resumo);
+      window.location.href = 'Loja.html';
     }
   </script>
 </body>
