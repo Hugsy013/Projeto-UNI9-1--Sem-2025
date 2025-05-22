@@ -28,16 +28,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cliente` (
-  `IDUSUARIO` int(11) NOT NULL,
-  `NOME_CLI` varchar(100) NOT NULL,
-  `DATA_NASCIMENTO` date NOT NULL,
-  `EMAIL` varchar(255) NOT NULL,
-  `CPF` varchar(14) NOT NULL,
-  `ENDERECO_CLI` varchar(255) NOT NULL
+  `IDUSUARIO` int(11) ,
+  `NOME_CLI` varchar(100) ,
+  `DATA_NASCIMENTO` date ,
+  `EMAIL` varchar(255) ,
+  `CPF` varchar(14) ,
+  `ENDERECO_CLI` varchar(255),
   `NUMERO_CELULAR` varchar(15) NOT NULL,
   `COMPLEMENTO` varchar(255),
-  `SENHA` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `SENHA` varchar(255)
+);
 
 -- --------------------------------------------------------
 
@@ -46,74 +46,7 @@ CREATE TABLE `cliente` (
 --
 
 CREATE TABLE `itens` (
-  `ID_ITEM` int(11) NOT NULL,
-  `DESCRICAO` varchar(255) NOT NULL,
+  `ITEM` varchar(20) NOT NULL,
+  `OBS` varchar(255) NOT NULL,
   `VALOR` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `ID_USUARIO` int(11) NOT NULL,
-  `SENHA` varchar(255) NOT NULL,
-  `TIPO` enum('admin','cliente') NOT NULL,
-  `NOME_USU` varchar(100) NOT NULL,
-  `ENDERECO_USU` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Índices para tabelas despejadas
---
-
---
--- Índices de tabela `cliente`
---
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`IDUSUARIO`);
-
---
--- Índices de tabela `itens`
---
-ALTER TABLE `itens`
-  ADD PRIMARY KEY (`ID_ITEM`);
-
---
--- Índices de tabela `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`ID_USUARIO`);
-
---
--- AUTO_INCREMENT para tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `itens`
---
-ALTER TABLE `itens`
-  MODIFY `ID_ITEM` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Restrições para tabelas despejadas
---
-
---
--- Restrições para tabelas `cliente`
---
-ALTER TABLE `cliente`
-  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`IDUSUARIO`) REFERENCES `usuarios` (`ID_USUARIO`) ON DELETE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+);
