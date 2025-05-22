@@ -1,61 +1,97 @@
 body {
-    font-family: Arial, sans-serif;
-}
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      background-color: #f8f8f8;
+    }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
-}
+    h1 {
+      text-align: center;
+      color: #333;
+    }
 
-#titulo-meus-pedidos {
-    text-align: center;
-    flex-grow: 1;
-    margin: 0 20px;
-}
+    .pedido {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
 
-#botao-voltar {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    .pedido h3 {
+      margin: 0 0 5px;
+      color: #111;
+    }
 
-#Pedidos {
-    width: 80%;
-    margin: 40px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
+    .pedido p {
+      margin: 0 0 10px;
+      color: #555;
+    }
 
-#titulo-Pedidos {
-    text-align: center;
-    margin-bottom: 20px;
-}
+    .pedido strong {
+      color: #000;
+    }
 
-#itens-Pedidos {
-    margin-bottom: 20px;
-}
+    .total {
+      margin-top: 30px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: right;
+      color: #222;
+    }
 
-#botao-finalizarcompra {
-    width: 200px;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-}
+    .observacoes {
+      margin-top: 30px;
+    }
 
-#botao-finalizarcompra:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
+    .observacoes label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .observacoes textarea {
+      width: 100%;
+      height: 80px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 14px;
+      resize: vertical;
+    }
+
+    .observacoes button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #222;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .observacoes button:hover {
+      background-color: #444;
+    }
+
+    .finalizar {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .finalizar button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      background-color: green;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .finalizar button:hover {
+      background-color: darkgreen;
+    }

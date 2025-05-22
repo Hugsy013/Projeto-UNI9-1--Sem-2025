@@ -3,85 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Meus Pedidos | TOIÇO'S BURGUERS</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-      background-color: #f8f8f8;
-    }
-
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-
-    .pedido {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      padding: 15px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    .pedido h3 {
-      margin: 0 0 5px;
-      color: #111;
-    }
-
-    .pedido p {
-      margin: 0 0 10px;
-      color: #555;
-    }
-
-    .pedido strong {
-      color: #000;
-    }
-
-    .total {
-      margin-top: 30px;
-      font-size: 20px;
-      font-weight: bold;
-      text-align: right;
-      color: #222;
-    }
-
-    .observacoes {
-      margin-top: 30px;
-    }
-
-    .observacoes label {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .observacoes textarea {
-      width: 100%;
-      height: 80px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      padding: 10px;
-      font-size: 14px;
-      resize: vertical;
-    }
-
-    .observacoes button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      background-color: #222;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .observacoes button:hover {
-      background-color: #444;
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylecarrinho.css">
   </style>
 </head>
 <body>
@@ -93,6 +16,10 @@
     <label for="obs">Observações do cliente:</label>
     <textarea id="obs" placeholder="Ex: Tirar cebola, ponto da carne, forma de entrega..."></textarea>
     <button onclick="salvarObservacoes()">Salvar Observação</button>
+  </div>
+
+  <div class="finalizar">
+    <button onclick="finalizarPedido()">Finalizar Pedido</button>
   </div>
 
   <script>
@@ -132,6 +59,24 @@
       } else {
         alert('Você não escreveu nada!');
       }
+    }
+
+    function finalizarPedido() {
+      const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const observacoes = localStorage.getItem('observacoes') || '';
+      
+      if (carrinho.length === 0) {
+        alert('Seu carrinho está vazio!');
+        return;
+      }
+
+      let resumo = carrinho.map(item => `${item.nome} - ${item.descricao} - ${item.preco}`).join('\n');
+      if (observacoes) {
+        resumo += `\n\nObservações: ${observacoes}`;
+      }
+
+      localStorage.setItem('pedidoFinal', resumo);
+      window.location.href = 'Loja.html';
     }
   </script>
 </body>
