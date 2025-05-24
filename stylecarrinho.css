@@ -1,45 +1,50 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 40px 0;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-}
-
-.container {
-  background-color: #333;
-  padding: 30px 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   max-width: 600px;
-  width: 90%;
+  margin: auto;
+  background-color: #f0f0f0;
+  color: #333;
 }
 
 h1 {
   text-align: center;
-  color: white;
-  margin-bottom: 25px;
-}
-
-p {
-  color: white;
-  text-align: center;
-  margin-bottom: 25px;
+  color: #222;
+  margin-bottom: 30px;
 }
 
 .pedido {
-  background-color: white;
-  border: 1px solid #ccc;
+  background-color: #fff;
+  border: 1px solid #ddd;
   border-radius: 10px;
   margin-bottom: 20px;
   padding: 15px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.pedido h3,
-.pedido p,
+.pedido h3 {
+  margin: 0 0 6px;
+  color: #111;
+  font-size: 18px;
+}
+
+.pedido p {
+  margin: 0 0 8px;
+  color: #555;
+  font-size: 14px;
+}
+
 .pedido strong {
-  color: #333;
+  color: #000;
+  font-size: 16px;
+}
+
+.total {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+  color: #222;
 }
 
 .observacoes {
@@ -51,7 +56,6 @@ p {
   display: block;
   margin-bottom: 6px;
   font-size: 15px;
-  color: white;
 }
 
 .observacoes textarea {
@@ -70,18 +74,16 @@ p {
   margin-top: 10px;
   padding: 10px 22px;
   font-size: 15px;
-  font-weight: bold;
   border: none;
-  background-color: white;
-  color: black;
+  background-color: #333;
+  color: #fff;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s;
 }
 
 .observacoes button:hover {
-  background-color: #ff7b00;
-  color: white;
+  background-color: #555;
 }
 
 .finalizar {
@@ -94,26 +96,13 @@ p {
   font-size: 17px;
   font-weight: bold;
   border: none;
-  margin: 0 10px;
+  background-color: #28a745;
+  color: white;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
-.finalizar .btn-finalizar {
-  background-color: #28a745;
-  color: white;
-}
-
-.finalizar .btn-finalizar:hover {
+.finalizar button:hover {
   background-color: #218838;
-}
-
-.finalizar .btn-excluir {
-  background-color: #dc3545;
-  color: white;
-}
-
-.finalizar .btn-excluir:hover {
-  background-color: #c82333;
 }
