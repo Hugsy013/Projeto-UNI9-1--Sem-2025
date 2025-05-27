@@ -8,31 +8,37 @@
 </head>
 <body>
   <h1>Meus Pedidos</h1>
+
   <div id="lista-carrinho"></div>
   <p class="total" id="total-pedido"></p>
 
   <div class="observacoes">
-    <label for="obs">Observações do cliente:</label>
+    <label for="obs">Observações gerais:</label>
     <textarea id="obs" placeholder="Ex: Tirar cebola, ponto da carne, forma de entrega..."></textarea>
-    <button onclick="salvarObservacoes()">Salvar Observação</button>
+    <button onclick="salvarObservacoes()">Salvar Observação Geral</button>
   </div>
 
   <div class="finalizar">
     <button onclick="finalizarPedido()">Finalizar Pedido</button>
+    <button onclick="excluirPedidoCompleto()" style="background-color: crimson;">Excluir Todo o Pedido</button>
   </div>
 
   <script>
     const listaCarrinho = document.getElementById('lista-carrinho');
     const totalPedido = document.getElementById('total-pedido');
-    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
-    if (carrinho.length === 0) {
-      listaCarrinho.innerHTML = '<p>Seu carrinho está vazio.</p>';
-      totalPedido.textContent = '';
-    } else {
+    function renderizarCarrinho() {
+      listaCarrinho.innerHTML = '';
       let total = 0;
 
-      carrinho.forEach(item => {
+      if (carrinho.length === 0) {
+        listaCarrinho.innerHTML = '<p>Seu carrinho está vazio.</p>';
+        totalPedido.textContent = '';
+        return;
+      }
+
+      carrinho.forEach((item, index) => {
         const precoNumerico = parseFloat(item.preco.replace('R$', '').replace(',', '.'));
         total += precoNumerico;
 
@@ -41,7 +47,10 @@
         div.innerHTML = `
           <h3>${item.nome}</h3>
           <p>${item.descricao}</p>
-          <strong>${item.preco}</strong>
+          <strong>${item.preco}</strong><br>
+          <label>Observações do item:</label><br>
+          <textarea onchange="salvarObsItem(${index}, this.value)" placeholder="Ex: Sem alface, bem passado...">${item.observacao || ''}</textarea><br>
+          <button onclick="excluirItem(${index})" style="margin-top: 5px;">Excluir Item</button>
         `;
         listaCarrinho.appendChild(div);
       });
@@ -49,37 +58,53 @@
       totalPedido.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
     }
 
-    function salvarObservacoes() {
-      const obs = document.getElementById('obs').value.trim();
-      if (obs) {
-        localStorage.setItem('observacoes', obs);
-        alert('Observação salva com sucesso!');
-        console.log('Observações do cliente:', obs);
-      } else {
-        alert('Você não escreveu nada!');
+    function salvarObsItem(index, texto) {
+      carrinho[index].observacao = texto;
+      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    }
+
+    function excluirItem(index) {
+      if (confirm('Deseja excluir este item do pedido?')) {
+        carrinho.splice(index, 1);
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        renderizarCarrinho();
       }
     }
 
+    function excluirPedidoCompleto() {
+      if (confirm('Tem certeza que deseja excluir todo o pedido?')) {
+        localStorage.removeItem('carrinho');
+        carrinho = [];
+        renderizarCarrinho();
+      }
+    }
+
+    function salvarObservacoes() {
+      const obs = document.getElementById('obs').value.trim();
+      localStorage.setItem('observacoes', obs);
+      alert('Observação geral salva com sucesso!');
+    }
+
     function finalizarPedido() {
-      const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-      const observacoes = localStorage.getItem('observacoes') || '';
-      
       if (carrinho.length === 0) {
         alert('Seu carrinho está vazio!');
         return;
       }
 
-      let resumo = carrinho.map(item => `${item.nome} - ${item.descricao} - ${item.preco}`).join('\n');
-      if (observacoes) {
-        resumo += `\n\nObservações: ${observacoes}`;
-      }
+      const observacoesGerais = localStorage.getItem('observacoes') || '';
+      const resumo = carrinho.map(item =>
+        `${item.nome} - ${item.descricao} - ${item.preco}${item.observacao ? ` - Obs: ${item.observacao}` : ''}`
+      ).join('\n');
 
-      localStorage.setItem('pedidoFinal', resumo);
+      const pedidoFinal = `${resumo}\n\nObservações Gerais: ${observacoesGerais}`;
 
-      console.log('Pedido finalizado:', resumo);
-      
+      localStorage.setItem('pedidoFinal', pedidoFinal);
+      console.log('Pedido finalizado:', pedidoFinal);
+
       window.location.href = 'painel.html';
     }
+    renderizarCarrinho();
   </script>
+  <button onclick="window.location.href='cardapio.html'">Voltar</button>
 </body>
 </html>
