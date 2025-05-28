@@ -14,11 +14,12 @@
 
   <div class="observacoes">
     <label for="obs">Observações gerais:</label>
-    <textarea id="obs" placeholder="Ex: Tirar cebola, ponto da carne, forma de entrega..."></textarea>
+    <textarea id="obs" placeholder="Ex: Tirar cebola, ponto da carne, forma de entrega..." style="font-family: Arial, sans-serif;"></textarea>
     <button onclick="salvarObservacoes()">Salvar Observação Geral</button>
   </div>
 
   <div class="finalizar">
+    <button onclick="window.location.href='cardapio.html'" style="background-color: orange;">Voltar</button>
     <button onclick="finalizarPedido()">Finalizar Pedido</button>
     <button onclick="excluirPedidoCompleto()" style="background-color: crimson;">Excluir Todo o Pedido</button>
   </div>
@@ -49,8 +50,8 @@
           <p>${item.descricao}</p>
           <strong>${item.preco}</strong><br>
           <label>Observações do item:</label><br>
-          <textarea onchange="salvarObsItem(${index}, this.value)" placeholder="Ex: Sem alface, bem passado...">${item.observacao || ''}</textarea><br>
-          <button onclick="excluirItem(${index})" style="margin-top: 5px;">Excluir Item</button>
+          <textarea onchange="salvarObsItem(${index}, this.value)" placeholder="Ex: Sem alface, bem passado..." style="font-family: Arial, sans-serif; width: 100%; height: 50px;">${item.observacao || ''}</textarea><br>
+          <button onclick="excluirItem(${index})" style="margin-top: 5px; background-color: red; border-radius: 8px; font-size: 17px; color: white; border: none">Excluir Item</button>
         `;
         listaCarrinho.appendChild(div);
       });
@@ -101,10 +102,10 @@
       localStorage.setItem('pedidoFinal', pedidoFinal);
       console.log('Pedido finalizado:', pedidoFinal);
 
-      window.location.href = 'painel.html';
+      window.location.href = 'loja.html';
     }
     renderizarCarrinho();
   </script>
-  <button onclick="window.location.href='cardapio.html'">Voltar</button>
+  
 </body>
 </html>
